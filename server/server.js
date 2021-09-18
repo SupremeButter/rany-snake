@@ -1,4 +1,6 @@
-const io = require('socket.io')();
+const io = socket(server, {
+  cors: { origin: "*" },
+});
 const { initGame, gameLoop, getUpdatedVelocity } = require('./game');
 const { FRAME_RATE } = require('./constants');
 const { makeid } = require('./utils');
