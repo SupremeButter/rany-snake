@@ -1,4 +1,9 @@
-const io = require('socket.io')(server, { origins: '*:*'});
+const io = require("socket.io")(httpServer, {
+  cors: {
+    origin: "https://gallant-wescoff-4f162c.netlify.app",
+    methods: ["GET", "POST"]
+  }
+});
 const { initGame, gameLoop, getUpdatedVelocity } = require('./game');
 const { FRAME_RATE } = require('./constants');
 const { makeid } = require('./utils');
@@ -6,18 +11,7 @@ const { makeid } = require('./utils');
 const state = {};
 const clientRooms = {};
 
-var express = require('express')
-var cors = require('cors')
-var app = express()
- 
-app.options('/products/:id', cors()) // enable pre-flight request for DELETE request
-app.del('/products/:id', cors(), function (req, res, next) {
-  res.json({msg: 'This is CORS-enabled for all origins!'})
-})
- 
-app.listen(80, function () {
-  console.log('CORS-enabled web server listening on port 80')
-})
+
 
 io.on('connection', client => {
   client.on('keydown', handleKeydown);
