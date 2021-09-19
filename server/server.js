@@ -1,8 +1,5 @@
 const io = require("socket.io")(httpServer, {
-  cors: {
-    origin: "https://gallant-wescoff-4f162c.netlify.app",
-    methods: ["GET", "POST"]
-  }
+  origins: ["https://gallant-wescoff-4f162c.netlify.app"]
 });
 const { initGame, gameLoop, getUpdatedVelocity } = require('./game');
 const { FRAME_RATE } = require('./constants');
